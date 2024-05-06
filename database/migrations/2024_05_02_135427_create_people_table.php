@@ -27,8 +27,6 @@ return new class extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('address');
-            $table->unsignedInteger('tp_id');
-            $table->foreign('tp_id')->references('id')->on('types');
             $table->timestamps();
 
         });
