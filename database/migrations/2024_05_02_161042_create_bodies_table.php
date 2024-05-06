@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('quantity', 45);
             $table->string('total', 45);
             $table->unsignedInteger('inventory_id');
-            $table->unsignedInteger('heads_id');
             $table->foreign('inventory_id')->references('id')->on('inventories');
-            $table->foreign('heads_id')->references('id')->on('heads');
             $table->timestamps();
         });
     }

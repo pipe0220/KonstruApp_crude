@@ -13,9 +13,8 @@ class Body extends Model
     {
     return $this->belongsTo(Inventory::class, 'inventory_id');
     }
-
-    public function head()
+    public function document()
     {
-    return $this->belongsTo(Head::class, 'heads_id');
+    return $this->hasOne(Document::class, 'bodies_id');
     }
 }
