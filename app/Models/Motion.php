@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Motion extends Model
 {
     use HasFactory;
+
+    public function inventories()
+{
+    return $this->hasMany(Inventory::class, 'motions_id');
+}
 }
