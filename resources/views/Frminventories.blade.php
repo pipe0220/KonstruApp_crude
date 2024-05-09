@@ -7,52 +7,72 @@
     <title>Formulario inventario</title>
 </head>
 <body>
-    <form action="{{route('frmproducts.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('frminventories.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <label>
-            Ingrese el nombre del producto
+            Ingrese la cantidad inicial
             <br>
-            <input type="text" name="name">
+            <input type="text" name="initial_quantity">
         </label>
         <label>
-            Ingrese el precio del producto
+            Ingrese la cantidad final
             <br>
-            <input type="text" name="price">
+            <input type="text" name="final_quantity">
         </label>
         <label>
-            Ingrese la descripcion del producto
+            Ingrese la cantidad actual
             <br>
-            <input type="text" name="description">
+            <input type="text" name="current_quantity">
         </label>
         <label>
-            Ingrese la cantidad del producto
+            Ingrese el lote
             <br>
-            <input type="text" name="amount">
+            <input type="text" name="lot">
         </label>
         <label>
-            Ingrese la marca del producto
+            Ingrese el precio de compra
             <br>
-            <input type="text" name="brand">
+            <input type="text" name="purchase_price">
         </label>
         <label>
-            Ingrese el modelo del producto
+            Ingrese el precio de venta
             <br>
-            <input type="text" name="model">
+            <input type="text" name="selling_price">
         </label>
         <label>
-            Ingrese las medidas del producto
+            Ingrese el porcentaje de ganancia
             <br>
-            <input type="text" name="measurements">
+            <input type="text" name="profit_percentage">
         </label>
         <label>
-            Ingrese el pais de origen del producto
+            Ingrese la fecha de fabricacion
             <br>
-            <input type="text" name="trade mark">
+            <input type="text" name="preparation_date">
         </label>
         <label>
-            Ingrese la categoria del producto
+            Ingrese la fecha de expiracion
             <br>
-            <input type="text" name="catproductos_id">
+            <input type="text" name="expiration_date">
+        </label>
+        <label>
+            Ingrese la id del movimiento
+            <br>
+            <input type="text" name="motions_id">
+        </label>
+        <label>
+            Ingrese la id de la tienda
+            <br>
+            <input type="text" name="stores_id">
+        </label>
+        <label>
+            Ingrese la id del producto
+            <br>
+            <input type="text" name="products_id">
+        </label>
+        <label>
+            Ingrese el id del cliente
+            <br>
+            <input type="text" name="people_id">
         </label>
             <br><br>
             <button type="submit">Enviar Formulario:</button>
