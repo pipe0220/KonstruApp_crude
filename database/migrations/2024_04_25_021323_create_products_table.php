@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id'); // Esta columna será la clave primaria autoincrement
+            $table->id(); // Esta columna será la clave primaria autoincrement
             $table->string('name', 45);
             $table->integer('price');
             $table->text('description');
