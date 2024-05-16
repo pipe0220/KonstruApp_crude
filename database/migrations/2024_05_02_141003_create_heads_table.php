@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('date');
             $table->string('total value');
-            $table->unsignedInteger('people_id');
+            $table->unsignedBigInteger('people_id');
             $table->foreign('people_id')->references('id')->on('people');
             $table->timestamps();
         });

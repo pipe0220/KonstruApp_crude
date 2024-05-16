@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('companies_id');
-            $table->unsignedInteger('cities_id');
+            $table->unsignedBigInteger('companies_id');
+            $table->unsignedBigInteger('cities_id');
             $table->foreign('companies_id')->references('id')->on('companies');
             $table->foreign('cities_id')->references('id')->on('cities');
             $table->timestamps();

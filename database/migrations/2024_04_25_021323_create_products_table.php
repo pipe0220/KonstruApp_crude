@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('model', 45);
             $table->string('measurements', 45);
             $table->string('trade mark', 45);
-            $table->unsignedInteger('catproductos_id');
+            $table->unsignedBigInteger('catproductos_id');
             $table->foreign('catproductos_id')->references('id')->on('product__categories');
             $table->timestamps();
 });

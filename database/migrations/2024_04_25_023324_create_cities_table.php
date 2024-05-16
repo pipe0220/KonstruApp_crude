@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('departament_id');
+            $table->unsignedBigInteger('departament_id'); // Asegurarse de que coincida con departaments.id
             $table->foreign('departament_id')->references('id')->on('departaments');
             $table->timestamps();
         });

@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('profit_percentage', 45);
             $table->string('preparation_date');
             $table->string('expiration_date', 45);
-            $table->unsignedInteger('motions_id');
-            $table->unsignedInteger('stores_id');
-            $table->unsignedInteger('products_id');
-            $table->unsignedInteger('people_id');
+            $table->unsignedBigInteger('motions_id');
+            $table->unsignedBigInteger('stores_id');
+            $table->unsignedBigInteger('products_id');
+            $table->unsignedBigInteger('people_id');
             $table->foreign('motions_id')->references('id')->on('motions');
             $table->foreign('products_id')->references('id')->on('products');
             $table->foreign('stores_id')->references('id')->on('stores');
