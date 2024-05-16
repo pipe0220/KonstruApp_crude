@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('email');
             $table->dateTime('birth_date');
             $table->string('gender');
-            $table->string('sex');
             $table->string('departament');
             $table->string('city');
             $table->string('country');
