@@ -18,8 +18,9 @@ class DepartamentController extends Controller
     {
         $departament = new Departament;
         $departament->name = $request->name;
+        
         $departament->save();
-        return redirect()->route('departament.index');
+        return $departament;
     }
     public function index()
     {

@@ -17,8 +17,9 @@ class CityController extends Controller
     {
         $city = new City;
         $city->name = $request->input('name');
+        $city->departament_id = $request->input('departament_id');
         $city->save();
-        return redirect()->route('city.index');
+        return $city;
     }
 
     public function index()
