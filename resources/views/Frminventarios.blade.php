@@ -4,30 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Formulario cuerpo de documento</title>
+    <title>formulario de inventarios</title>
 </head>
 <body>
-    <form action="{{route('frminventories.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('frmdetalle_compra.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        <label>
+            Ingrese el id
+            <br>
+            <input type="text" name="id">
+            <br>
+        </label>
         <label>
             Ingrese la cantidad
             <br>
-            <input type="text" name="quantity">
+            <input type="text" name="cantidad">
+            <br>
         </label>
         <label>
-            Ingrese el total
+            Ingrese la fecha de ingreso
             <br>
-            <input type="text" name="total">
+            <input type="text" name="fecha_ingreso">
+            <br>
         </label>
         <label>
-            Ingrese la id del inventario
+            Ingrese el id del producto
             <br>
-            <input type="text" name="inventory_id">
-        </label>
-        <label>
-            Ingrese la id de la cabeza de documento
+            <input type="text" name="producto_id">
             <br>
-            <input type="text" name="heads_id">
         </label>
             <br><br>
             <button type="submit">Enviar Formulario:</button>

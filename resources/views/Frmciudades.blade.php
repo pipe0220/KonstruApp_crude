@@ -7,19 +7,26 @@
     <title>Formulario de ciudades</title>
 </head>
 <body>
-    <form action="{{route('frmcities.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('frmciudades.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
+        <label>
+            Ingrese la id de la ciudad
+            <br>
+            <input type="text" name="id">
+            <br>
+        </label>
         <label>
             Ingrese el nombre de la ciudad
             <br>
-            <input type="text" name="name">
+            <input type="text" name="nombre">
+            <br>
         </label>
         <label>
-            Ingrese el departemento de la ciudad
+            Ingrese la id del departamento
             <br>
-            <input type="text" name="departament_id">
+            <input type="text" name="departamento_id">
+            <br>
         </label>
-
             <br><br>
             <button type="submit">Enviar Formulario:</button>
             </form>

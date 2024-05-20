@@ -19,8 +19,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/formulariodepartamento',[DepartamentController::class,'create']);
-Route::post('/storedepartamento',[DepartamentController::class,'store'])->name('frmdepartaments.store');
-
-Route::get('/formulariociudad',[CityController::class,'create']);
-Route::post('/storeciudad',[CityController::class,'store'])->name('frmcities.store');
