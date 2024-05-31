@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calificacion;
+use App\Models\Producto;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCalificacionRequest;
 use App\Http\Requests\UpdateCalificacionRequest;
 
@@ -13,7 +15,8 @@ class CalificacionController extends Controller
      */
     public function index()
     {
-        //
+        $calificaciones = Calificacion::with('cliente', 'producto')->get();
+        return view('calificaciones.index', compact('calificaciones'));
     }
 
     /**
@@ -21,7 +24,8 @@ class CalificacionController extends Controller
      */
     public function create()
     {
-        //
+        $productos = Producto::all();
+        return view('calificaciones.create',compact('productos'));
     }
 
     /**
@@ -29,7 +33,23 @@ class CalificacionController extends Controller
      */
     public function store(StoreCalificacionRequest $request)
     {
-        //
+        $request->validate([
+            'producto_id' => 'required|exists:productos,id',
+            'puntuacion' => 'required|integer|between:1,5',
+            'comentario' => 'required',
+        ]);
+
+        $cliente = Auth::user(); // Asumiendo que el cliente está autenticado
+
+        Calificacion::create([
+            'cliente_id' => $cliente->id,
+            'producto_id' => $request->producto_id,
+            'puntuacion' => $request->puntuacion,
+            'comentario' => $request->comentario,
+            'fecha_calificacion' => now(),
+        ]);
+
+        return redirect()->route('calificaciones.index')->with('success', 'Gracias por su calificacion.');
     }
 
     /**
@@ -37,7 +57,8 @@ class CalificacionController extends Controller
      */
     public function show(Calificacion $calificacion)
     {
-        //
+        $calificacion->load('cliente', 'producto');
+        return view('calificaciones.show', compact('calificacion'));
     }
 
     /**
@@ -45,7 +66,8 @@ class CalificacionController extends Controller
      */
     public function edit(Calificacion $calificacion)
     {
-        //
+        $productos = Producto::all();
+        return view('calificaciones.edit', compact('calificacion', 'productos'));
     }
 
     /**
@@ -53,7 +75,17 @@ class CalificacionController extends Controller
      */
     public function update(UpdateCalificacionRequest $request, Calificacion $calificacion)
     {
-        //
+        $request->validate([
+            'producto_id' => 'required|exists:productos,id',
+            'puntuacion' => 'required|integer|between:1,5',
+            'comentario' => 'required',
+        ]);
+        $calificacion->update([
+            'producto_id' => $request->producto_id,
+            'puntuacion' => $request->puntuacion,
+            'comentario' => $request->comentario,
+        ]);
+        return redirect()->route('calificaciones.index')->with('success', 'Calificacion actualizada.');
     }
 
     /**
@@ -61,6 +93,7 @@ class CalificacionController extends Controller
      */
     public function destroy(Calificacion $calificacion)
     {
-        //
+        $calificacion->delete();
+        return redirect()->route('calificaciones.index')->with('success', 'Calificacion eliminada.');
     }
 }

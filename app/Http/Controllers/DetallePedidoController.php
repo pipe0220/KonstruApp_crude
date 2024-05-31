@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detalle_pedido;
-use App\Http\Requests\StoreDetalle_pedidoRequest;
-use App\Http\Requests\UpdateDetalle_pedidoRequest;
+use App\Models\DetallePedido;
+use App\Http\Requests\StoreDetallePedidoRequest;
+use App\Http\Requests\UpdateDetallePedidoRequest;
 
 class DetallePedidoController extends Controller
 {
@@ -27,7 +27,7 @@ class DetallePedidoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDetalle_pedidoRequest $request)
+    public function store(StoreDetallePedidoRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class DetallePedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Detalle_pedido $detalle_pedido)
+    public function show(DetallePedido $detalle_pedido)
     {
         //
     }
@@ -43,7 +43,7 @@ class DetallePedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Detalle_pedido $detalle_pedido)
+    public function edit(DetallePedido $detalle_pedido)
     {
         //
     }
@@ -51,7 +51,7 @@ class DetallePedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDetalle_pedidoRequest $request, Detalle_pedido $detalle_pedido)
+    public function update(UpdateDetallePedidoRequest $request, DetallePedido $detalle_pedido)
     {
         //
     }
@@ -59,7 +59,7 @@ class DetallePedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Detalle_pedido $detalle_pedido)
+    public function destroy(DetallePedido $detalle_pedido)
     {
         //
     }

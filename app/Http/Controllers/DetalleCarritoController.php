@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detalle_carritos;
-use App\Http\Requests\StoreDetalle_carritosRequest;
-use App\Http\Requests\UpdateDetalle_carritosRequest;
+use App\Models\DetalleCarrito;
+use App\Http\Requests\StoreDetalleCarritoRequest;
+use App\Http\Requests\UpdateDetalleCarritoRequest;
 
-class DetalleCarritosController extends Controller
+class DetalleCarritoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class DetalleCarritosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDetalle_carritosRequest $request)
+    public function store(StoreDetalleCarritoRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class DetalleCarritosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Detalle_carritos $detalle_carritos)
+    public function show(DetalleCarrito $detalleCarrito)
     {
         //
     }
@@ -43,7 +43,7 @@ class DetalleCarritosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Detalle_carritos $detalle_carritos)
+    public function edit(DetalleCarrito $detalleCarrito)
     {
         //
     }
@@ -51,7 +51,7 @@ class DetalleCarritosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDetalle_carritosRequest $request, Detalle_carritos $detalle_carritos)
+    public function update(UpdateDetalleCarritoRequest $request, DetalleCarrito $detalleCarrito)
     {
         //
     }
@@ -59,7 +59,7 @@ class DetalleCarritosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Detalle_carritos $detalle_carritos)
+    public function destroy(DetalleCarrito $detalleCarrito)
     {
         //
     }

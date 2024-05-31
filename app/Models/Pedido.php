@@ -8,23 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     use HasFactory;
+    // Relación con el modelo Cliente (Un Pedido pertenece a un Cliente)
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);
     }
 
-    public function metodoPago()
-    {
-        return $this->belongsTo(Metodo_Pago::class);
-    }
-
+    // Relación con el modelo EstadoPedido (Un Pedido pertenece a un EstadoPedido)
     public function estadoPedido()
     {
-        return $this->belongsTo(Estado_Pedido::class);
+        return $this->belongsTo(EstadoPedido::class);
     }
 
-    public function detallePedido()
+    // Relación con el modelo MetodoPago (Un Pedido pertenece a un MetodoPago)
+    public function metodoPago()
     {
-        return $this->hasMany(Detalle_Pedido::class);
+        return $this->belongsTo(MetodoPago::class);
     }
+
+    // Relación con el modelo DetallePedido (Un Pedido tiene muchos DetallePedido)
+    public function detallePedidos()
+    {
+        return $this->hasMany(DetallePedido::class);
+    }
+
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Metodo_pago;
-use App\Http\Requests\StoreMetodo_pagoRequest;
-use App\Http\Requests\UpdateMetodo_pagoRequest;
+use App\Models\MetodoPago;
+use App\Http\Requests\StoreMetodoPagoRequest;
+use App\Http\Requests\UpdateMetodoPagoRequest;
 
 class MetodoPagoController extends Controller
 {
@@ -27,7 +27,7 @@ class MetodoPagoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMetodo_pagoRequest $request)
+    public function store(StoreMetodoPagoRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class MetodoPagoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Metodo_pago $metodo_pago)
+    public function show(MetodoPago $metodoPago)
     {
         //
     }
@@ -43,7 +43,7 @@ class MetodoPagoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Metodo_pago $metodo_pago)
+    public function edit(MetodoPago $metodoPago)
     {
         //
     }
@@ -51,7 +51,7 @@ class MetodoPagoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMetodo_pagoRequest $request, Metodo_pago $metodo_pago)
+    public function update(UpdateMetodoPagoRequest $request, MetodoPago $metodoPago)
     {
         //
     }
@@ -59,7 +59,7 @@ class MetodoPagoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Metodo_pago $metodo_pago)
+    public function destroy(MetodoPago $metodoPago)
     {
         //
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detalle_compra;
-use App\Http\Requests\StoreDetalle_compraRequest;
-use App\Http\Requests\UpdateDetalle_compraRequest;
+use App\Models\DetalleCompra;
+use App\Http\Requests\StoreDetalleCompraRequest;
+use App\Http\Requests\UpdateDetalleCompraRequest;
 
 class DetalleCompraController extends Controller
 {
@@ -27,7 +27,7 @@ class DetalleCompraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDetalle_compraRequest $request)
+    public function store(StoreDetalleCompraRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class DetalleCompraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Detalle_compra $detalle_compra)
+    public function show(DetalleCompra $detalleCompra)
     {
         //
     }
@@ -43,7 +43,7 @@ class DetalleCompraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Detalle_compra $detalle_compra)
+    public function edit(DetalleCompra $detalleCompra)
     {
         //
     }
@@ -51,7 +51,7 @@ class DetalleCompraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDetalle_compraRequest $request, Detalle_compra $detalle_compra)
+    public function update(UpdateDetalleCompraRequest $request, DetalleCompra $detalleCompra)
     {
         //
     }
@@ -59,7 +59,7 @@ class DetalleCompraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Detalle_compra $detalle_compra)
+    public function destroy(DetalleCompra $detalleCompra)
     {
         //
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estado_pedido;
-use App\Models\Metodo_pago;
+use App\Models\EstadoPedido;
+use App\Models\MetodoPago;
 use App\Models\Pedido;
 use App\Http\Requests\StorePedidoRequest;
 use App\Http\Requests\UpdatePedidoRequest;
@@ -26,8 +26,8 @@ class PedidoController extends Controller
     public function create()
     {
         $clientes = Cliente::all();
-        $metodosPago = Metodo_pago::all();
-        $estadosPedido = Estado_pedido::all();
+        $metodosPago = MetodoPago::all();
+        $estadosPedido = EstadoPedido::all();
         return view('pedidos.create', compact('clientes', 'metodosPago', 'estadosPedido'));
     }
 

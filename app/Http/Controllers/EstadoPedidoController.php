@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estado_pedido;
-use App\Http\Requests\StoreEstado_pedidoRequest;
-use App\Http\Requests\UpdateEstado_pedidoRequest;
+use App\Models\EstadoPedido;
+use App\Http\Requests\StoreEstadoPedidoRequest;
+use App\Http\Requests\UpdateEstadoPedidoRequest;
 
 class EstadoPedidoController extends Controller
 {
@@ -27,7 +27,7 @@ class EstadoPedidoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEstado_pedidoRequest $request)
+    public function store(StoreEstadoPedidoRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class EstadoPedidoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Estado_pedido $estado_pedido)
+    public function show(EstadoPedido $estadoPedido)
     {
         //
     }
@@ -43,7 +43,7 @@ class EstadoPedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Estado_pedido $estado_pedido)
+    public function edit(EstadoPedido $estadoPedido)
     {
         //
     }
@@ -51,7 +51,7 @@ class EstadoPedidoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEstado_pedidoRequest $request, Estado_pedido $estado_pedido)
+    public function update(UpdateEstadoPedidoRequest $request, EstadoPedido $estadoPedido)
     {
         //
     }
@@ -59,7 +59,7 @@ class EstadoPedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Estado_pedido $estado_pedido)
+    public function destroy(EstadoPedido $estadoPedido)
     {
         //
     }

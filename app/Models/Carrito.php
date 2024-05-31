@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Carrito extends Model
 {
     use HasFactory;
+    // Relación con el modelo Cliente (Un Carrito pertenece a un Cliente)
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);
     }
 
-    public function detalleCarrito()
+    // Relación con el modelo DetalleCarrito (Un Carrito tiene muchos DetalleCarrito)
+    public function detalleCarritos()
     {
-        return $this->hasMany(Detalle_Carritos::class);
+        return $this->hasMany(DetalleCarrito::class);
     }
+
 }

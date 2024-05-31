@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Compra extends Model
 {
     use HasFactory;
+     // Relación con el modelo Proveedor (Una Compra pertenece a un Proveedor)
     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class);
     }
 
-    public function detalleCompra()
+    // Relación con el modelo DetalleCompra (Una Compra tiene muchos DetalleCompra)
+    public function detalleCompras()
     {
-        return $this->hasMany(Detalle_Compra::class);
+        return $this->hasMany(DetalleCompra::class);
     }
+
 }
