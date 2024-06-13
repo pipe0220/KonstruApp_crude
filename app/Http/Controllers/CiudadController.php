@@ -6,69 +6,57 @@ use App\Models\Ciudad;
 use App\Models\Departamento;
 use App\Http\Requests\StoreCiudadRequest;
 use App\Http\Requests\UpdateCiudadRequest;
+use Illuminate\Http\Request;
 
 class CiudadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function ciudadesIndex()
     {
-        $ciudades = Ciudad::with('departamento')->get();
+        $ciudades = Ciudad::all();
         return view('ciudades.index', compact('ciudades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function ciudadesCreate()
     {
-        $departamentos = Departamento::all();
-        return view('ciudades.create', compact('departamentos'));
+        return view('ciudades.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCiudadRequest $request)
+    public function ciudadesStore(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'departamento_id' => 'required|exists:departamentos,id',
+        ]);
+
         Ciudad::create($request->all());
-        return redirect()->route('ciudades.index');
+        return redirect()->route('ciudades.index')->with('success', 'Ciudad creada correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Ciudad $ciudad)
+    public function ciudadesShow(Ciudad $ciudad)
     {
-        $ciudad->load('departamento');
         return view('ciudades.show', compact('ciudad'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ciudad $ciudad)
+    public function ciudadesEdit(Ciudad $ciudad)
     {
-        $departamentos = Departamento::all();
-        return view('ciudades.edit', compact('ciudad', 'departamentos'));
+        return view('ciudades.edit', compact('ciudad'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCiudadRequest $request, Ciudad $ciudad)
+    public function ciudadesUpdate(Request $request, Ciudad $ciudad)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'departamento_id' => 'required|exists:departamentos,id',
+        ]);
+
         $ciudad->update($request->all());
-        return redirect()->route('ciudades.index');
+        return redirect()->route('ciudades.index')->with('success', 'Ciudad actualizada correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ciudad $ciudad)
+    public function ciudadesDestroy(Ciudad $ciudad)
     {
         $ciudad->delete();
-        return redirect()->route('ciudades.index');
+        return redirect()->route('ciudades.index')->with('success', 'Ciudad eliminada correctamente.');
     }
+
 }

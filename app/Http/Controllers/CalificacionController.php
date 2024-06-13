@@ -4,63 +4,64 @@ namespace App\Http\Controllers;
 
 use App\Models\Calificacion;
 use App\Http\Requests\StoreCalificacionRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateCalificacionRequest;
 
 class CalificacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function calificacionesIndex()
     {
-        //
+        $calificaciones = Calificacion::all();
+        return view('calificaciones.index', compact('calificaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function calificacionesCreate()
     {
-        //
+        return view('calificaciones.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCalificacionRequest $request)
+    public function calificacionesStore(Request $request)
     {
-        //
+        $request->validate([
+            'puntuacion' => 'required|integer|between:1,5',
+            'comentario' => 'required',
+            'fecha_calificacion' => 'required|date',
+            'cliente_id' => 'required|exists:clientes,id',
+            'producto_id' => 'required|exists:productos,id',
+        ]);
+
+        Calificacion::create($request->all());
+        return redirect()->route('calificaciones.index')->with('success', 'Calificación creada correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Calificacion $calificacion)
+    public function calificacionesShow(Calificacion $calificacion)
     {
-        //
+        return view('calificaciones.show', compact('calificacion'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Calificacion $calificacion)
+    public function calificacionesEdit(Calificacion $calificacion)
     {
-        //
+        return view('calificaciones.edit', compact('calificacion'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCalificacionRequest $request, Calificacion $calificacion)
+    public function calificacionesUpdate(Request $request, Calificacion $calificacion)
     {
-        //
+        $request->validate([
+            'puntuacion' => 'required|integer|between:1,5',
+            'comentario' => 'required',
+            'fecha_calificacion' => 'required|date',
+            'cliente_id' => 'required|exists:clientes,id',
+            'producto_id' => 'required|exists:productos,id',
+        ]);
+
+        $calificacion->update($request->all());
+        return redirect()->route('calificaciones.index')->with('success', 'Calificación actualizada correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Calificacion $calificacion)
+    public function calificacionesDestroy(Calificacion $calificacion)
     {
-        //
+        $calificacion->delete();
+        return redirect()->route('calificaciones.index')->with('success', 'Calificación eliminada correctamente.');
     }
+
 }

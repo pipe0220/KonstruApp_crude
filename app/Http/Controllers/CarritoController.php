@@ -5,62 +5,56 @@ namespace App\Http\Controllers;
 use App\Models\Carrito;
 use App\Http\Requests\StoreCarritoRequest;
 use App\Http\Requests\UpdateCarritoRequest;
+use Illuminate\Http\Request;
 
 class CarritoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function carritosIndex()
     {
-        //
+        $carritos = Carrito::all();
+        return view('carritos.index', compact('carritos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function carritosCreate()
     {
-        //
+        return view('carritos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCarritoRequest $request)
+    public function carritosStore(Request $request)
     {
-        //
+        $request->validate([
+            'fecha_creacion' => 'required|date',
+            'cliente_id' => 'required|exists:clientes,id',
+        ]);
+
+        Carrito::create($request->all());
+        return redirect()->route('carritos.index')->with('success', 'Carrito creado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Carrito $carrito)
+    public function carritosShow(Carrito $carrito)
     {
-        //
+        return view('carritos.show', compact('carrito'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Carrito $carrito)
+    public function carritosEdit(Carrito $carrito)
     {
-        //
+        return view('carritos.edit', compact('carrito'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCarritoRequest $request, Carrito $carrito)
+    public function carritosUpdate(Request $request, Carrito $carrito)
     {
-        //
+        $request->validate([
+            'fecha_creacion' => 'required|date',
+            'cliente_id' => 'required|exists:clientes,id',
+        ]);
+
+        $carrito->update($request->all());
+        return redirect()->route('carritos.index')->with('success', 'Carrito actualizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Carrito $carrito)
+    public function carritosDestroy(Carrito $carrito)
     {
-        //
+        $carrito->delete();
+        return redirect()->route('carritos.index')->with('success', 'Carrito eliminado correctamente.');
     }
 }

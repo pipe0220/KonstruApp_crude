@@ -5,62 +5,72 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Http\Requests\StoreClienteRequest;
 use App\Http\Requests\UpdateClienteRequest;
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function clientesIndex()
     {
-        //
+        $clientes = Cliente::all();
+        return view('clientes.index', compact('clientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function clientesCreate()
     {
-        //
+        return view('clientes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreClienteRequest $request)
+    public function clientesStore(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:clientes',
+            'contraseña' => 'required|string|min:8',
+            'telefono' => 'required|string|max:255',
+            'direccion_envio' => 'required|string|max:255',
+            'ciudad_envio_id' => 'required|exists:ciudades,id',
+        ]);
+
+        $request->merge(['contraseña' => bcrypt($request->contraseña)]);
+        Cliente::create($request->all());
+        return redirect()->route('clientes.index')->with('success', 'Cliente creado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Cliente $cliente)
+    public function clientesShow(Cliente $cliente)
     {
-        //
+        return view('clientes.show', compact('cliente'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cliente $cliente)
+    public function clientesEdit(Cliente $cliente)
     {
-        //
+        return view('clientes.edit', compact('cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateClienteRequest $request, Cliente $cliente)
+    public function clientesUpdate(Request $request, Cliente $cliente)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:clientes,email,'.$cliente->id,
+            'contraseña' => 'nullable|string|min:8',
+            'telefono' => 'required|string|max:255',
+            'direccion_envio' => 'required|string|max:255',
+            'ciudad_envio_id' => 'required|exists:ciudades,id',
+        ]);
+
+        if ($request->filled('contraseña')) {
+            $request->merge(['contraseña' => bcrypt($request->contraseña)]);
+        }
+        $cliente->update($request->all());
+        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cliente $cliente)
+    public function clientesDestroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado correctamente.');
     }
+
+
 }

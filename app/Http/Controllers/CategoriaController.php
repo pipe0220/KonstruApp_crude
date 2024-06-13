@@ -5,69 +5,59 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Http\Requests\StoreCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
+use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function categoriasIndex()
     {
-        $categorias = Categoria::with('categoriaPadre', 'subcategorias')->get();
+        $categorias = Categoria::all();
         return view('categorias.index', compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function categoriasCreate()
     {
-        $categoriasParent = Categoria::all();
-        return view('categorias.create', compact('categoriasParent'));
+        return view('categorias.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCategoriaRequest $request)
+    public function categoriasStore(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+            'categoria_padre' => 'nullable|exists:categorias,id',
+        ]);
+
         Categoria::create($request->all());
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'Categoría creada correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Categoria $categoria)
+    public function categoriasShow(Categoria $categoria)
     {
-        $categoria->load('categoriaPadre', 'subcategorias');
         return view('categorias.show', compact('categoria'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Categoria $categoria)
+    public function categoriasEdit(Categoria $categoria)
     {
-        $categoriasParent = Categoria::all();
-        return view('categorias.edit', compact('categoria', 'categoriasParent'));
+        return view('categorias.edit', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCategoriaRequest $request, Categoria $categoria)
+    public function categoriasUpdate(Request $request, Categoria $categoria)
     {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+            'categoria_padre' => 'nullable|exists:categorias,id',
+        ]);
+
         $categoria->update($request->all());
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'Categoría actualizada correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Categoria $categoria)
+    public function categoriasDestroy(Categoria $categoria)
     {
         $categoria->delete();
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'Categoría eliminada correctamente.');
     }
+
 }
